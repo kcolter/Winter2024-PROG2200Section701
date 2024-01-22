@@ -8,22 +8,20 @@ namespace SchoolTracker
         {
             Console.WriteLine("How many students in your class?");
             var studentCount = int.Parse(Console.ReadLine());
-
-            var studentNames = new string[studentCount];
-            var studentGrades = new int[studentCount];
+            var masterArray = new string[studentCount, studentCount];
 
             for (int i = 0; i < studentCount; i++)
             {
                 Console.Write("Student Name: ");
-                studentNames[i] = Console.ReadLine();
+                masterArray[i, 0] = Console.ReadLine();
 
                 Console.Write("Student Grade: ");
-                studentGrades[i] = int.Parse(Console.ReadLine());
+                masterArray[i, 1] = Console.ReadLine();
             }
 
             for (int i = 0; i < studentCount; i++)
             {
-                Console.WriteLine("Name: {0}, Grade: {1}", studentNames[i], studentGrades[i]);
+                Console.WriteLine("Name: {0}, Grade: {1}", masterArray[i, 0], masterArray[i, 1]);
             }
         }
     }
