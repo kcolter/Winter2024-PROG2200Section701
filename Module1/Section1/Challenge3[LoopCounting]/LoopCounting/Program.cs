@@ -6,13 +6,25 @@ namespace LoopCounting
     {
         static void Main(string[] args)
         {
+            int destination, direction, start;
+
             for (int x = 1; x <= 5; x++)
             {
-                for (int i = 1; i <= 10; i++)
+                //condition will be true on odd-num runs
+                if (!(x % 2 == 0))
                 {
-                    Console.WriteLine(i);
+                    direction = 1;
+                    start = 1;
+                    destination = 11; //11 instead of 10 due to for-loop flow
+
+                } else {
+                    direction = -1;
+                    start = 10;
+                    destination = 0; //0 instead of 1 due to for-loop flow
                 }
-                for (int i = 10; i >= 1; i--)
+
+                //run for loop with above-decided numbers
+                for (int i = start; i!= destination; i += direction)
                 {
                     Console.WriteLine(i);
                 }
