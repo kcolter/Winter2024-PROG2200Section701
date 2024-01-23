@@ -2,6 +2,23 @@
 
 namespace Survey
 {
+
+    enum Months
+    {
+        January,
+        February,
+        March,
+        April,
+        May,
+        June,
+        July,
+        August,
+        September,
+        October,
+        November,
+        December
+    }
+
     class Program
     {
         static void Main(string[] args)
