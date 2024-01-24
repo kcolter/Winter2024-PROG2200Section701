@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Resources;
 
 namespace SchoolTracker
 {
+    interface IGraduate
+    {
+        void graduate();
+    }
+
     enum School
     {
         Hogwarts,
@@ -17,6 +23,8 @@ namespace SchoolTracker
         static void Main(string[] args)
         {
             var adding = true;
+            PayRoll payroll = new PayRoll();
+            payroll.PayAll();
 
             while (adding)
             {
@@ -60,6 +68,10 @@ namespace SchoolTracker
                 Console.WriteLine("Name: {0}, Grade: {1}", student.Name, student.Grade);
             }
             Exports();
+
+            //create registrar instance and then grad all
+            Registrar r1 = new Registrar(students);
+            r1.graduateAll();
         }
 
         static void Import()
@@ -86,45 +98,5 @@ namespace SchoolTracker
                 }
             }
         }
-    }
-
-    class Member
-    {
-        public string Name;
-        public string Address;
-        protected int phone;
-
-        public int Phone
-        {
-            set { phone = value; }
-        }
-    }
-
-    class Student : Member
-    {
-        static public int Count = 0;
-
-        public int Grade;
-        public string Birthday;
-        public School School;
-
-        public Student()
-        {
-
-        }
-
-        public Student(string name, int grade, string birthday, string address, int phone)
-        {
-            Name = name;
-            Grade = grade;
-            Birthday = birthday;
-            Address = address;
-            Phone = phone;
-        }
-    }
-
-    class Teacher : Member
-    {
-        public string Subject;
     }
 }
