@@ -32,21 +32,23 @@ namespace Survey
             var age = TryAnswer();
 
             Console.WriteLine("What month were you born in?");
-            var month = TryAnswer();
+            int month = TryMonthAnswer();
 
             var day = getDayOfMonth();
 
             Console.WriteLine("Your name is: {0}", name);
             Console.WriteLine("Your age is: {0}", age);
-            Console.WriteLine("You were born on {0} {1}", month, day);
+
+            string monthStr = Enum.GetName(typeof(Months), month); //WriteLine wasnt liking this in its params, so doing getname here befor output
+            Console.WriteLine("You were born on {0} {1}", monthStr, day);
             Console.WriteLine("Your zodiac sign is {0}", GetZodiacSign(month, day));
         }
         
-        static string GetZodiacSign(string monthIn, int date)
+        static string GetZodiacSign(int monthIn, int date)
         {
             //source: fed chatgpt a list of zodiac months/dates and had it gen this switch statement,
             //as given the amount of repetitive typing felt it wasnt worth the time it'd take to write it by hand
-            switch (monthIn.ToLower())
+            switch ((Enum.GetName(typeof(Months), monthIn)).ToLower()) //making use of months int
             {
                 case "march":
                     return (date >= 21 && date <= 31) ? "Aries" : "Invalid date";
