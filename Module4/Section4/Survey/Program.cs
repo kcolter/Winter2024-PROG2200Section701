@@ -30,8 +30,16 @@ namespace Survey
     }
     class Program
     {
+        static public event Action Posted;
+        static public event Action SurveyDone;
+
         static void Main(string[] args)
         {
+            Stats stats = new Stats();
+            stats.Start();
+
+            Marketing marketing = new Marketing();
+
             var data = new Data();
 
             Console.WriteLine("What is your name?");
@@ -43,7 +51,11 @@ namespace Survey
             Console.WriteLine("What month were you born in?");
             data.Month = TryAnswer();
 
+            Posted();
+
             data.Display();
+
+            marketing.end();
         }
 
         static string TryAnswer()
