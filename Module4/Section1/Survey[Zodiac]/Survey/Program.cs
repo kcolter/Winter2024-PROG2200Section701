@@ -2,7 +2,6 @@
 
 namespace Survey
 {
-
     enum Months
     {
         January,
@@ -23,6 +22,9 @@ namespace Survey
     {
         static void Main(string[] args)
         {
+
+            //Console.WriteLine(Enum.GetName(typeof(Months), 0));
+
             Console.WriteLine("What is your name?");
             var name = TryAnswer();
 
@@ -100,6 +102,26 @@ namespace Survey
                 return Console.ReadLine();
             }
             return question;
+        }
+
+        //method for converting month to an Int so we can make use of the enum
+        static int TryMonthAnswer()
+        {
+            Console.WriteLine("What number month were you born in? [Jan=1, Feb=2, etc.]"); //will have to -1 to account for 0-indexing
+            var response = Console.ReadLine();
+            int parsedResponse;
+
+            //while an int cant be parsed keep asking
+            while (!(int.TryParse(response, out parsedResponse)))
+            {
+                //prompt user again
+                Console.WriteLine("Error parsing int, please enter an int for the month you were born in [ex. Jan = 1]");
+                response = Console.ReadLine(); //read input again and let loop evaluate again
+            }
+
+            //return decremented to account for 0-indexing in enum
+            parsedResponse--;
+            return parsedResponse;
         }
     }
 }
